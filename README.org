@@ -1,0 +1,39 @@
+* Lack-Middleware-Validation 
+
+** Usage
+add component.
+
+#+begin_src lisp
+(builder
+ :validation
+ *web*)
+#+end_src
+
+add routing.
+#+begin_src lisp
+(defroute ("/sign/in" :method :POST)
+    (&key |email| |password|)
+  (let ((email    (validation |email|    :string :require t))
+        (password (validation |password| :string :require t)))
+    (render-json (sign-in email password))))
+#+end_src
+
+** Installation
+#+begin_src lisp
+(ql:quickload :lack-middleware-validation)
+#+end_src
+
+** Dependencies
+
+
+** Author
+
++ Satoshi Iwasaki (yanqirenshi@gmail.com)
+
+** Copyright
+
+Copyright (c) 2015 Satoshi Iwasaki (yanqirenshi@gmail.com)
+
+** License
+
+Licensed under the MIT License.
