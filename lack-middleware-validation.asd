@@ -1,10 +1,10 @@
 #|
-  This file is a part of lack-middleware-validation project.
-  Copyright (c) 2015 Satoshi Iwasaki (yanqirenshi@gmail.com)
+This file is a part of lack-middleware-validation project.
+Copyright (c) 2015 Satoshi Iwasaki (yanqirenshi@gmail.com)
 |#
 
 #|
-  Author: Satoshi Iwasaki (yanqirenshi@gmail.com)
+Author: Satoshi Iwasaki (yanqirenshi@gmail.com)
 |#
 
 (in-package :cl-user)
@@ -21,21 +21,22 @@
                :world2world)
   :components ((:module "src"
                 :components
-                ((:file "package")
-                 (:file "message" :depends-on ("package"))
-                 (:file "condition" :depends-on ("message"))
-                 (:module "validatior-item"
-                  :components ((:file "boolean")
-                               (:file "double")
-                               (:file "email")
-                               (:file "float")
-                               (:file "integer")
-                               (:file "postal-code")
-                               (:file "string")
-                               (:file "telephone-number")
-                               (:file "url"))
-                  :depends-on ("condition"))
-                 (:file "lack-middleware-validation" :depends-on ("validatior-item")))))
+                        ((:file "package")
+                         (:file "message-data" :depends-on ("package"))
+                         (:file "message" :depends-on ("message-data"))
+                         (:file "condition" :depends-on ("message"))
+                         (:module "validatior-item"
+                          :components ((:file "boolean")
+                                       (:file "double")
+                                       (:file "email")
+                                       (:file "float")
+                                       (:file "integer")
+                                       (:file "postal-code")
+                                       (:file "string")
+                                       (:file "telephone-number")
+                                       (:file "url"))
+                          :depends-on ("condition"))
+                         (:file "lack-middleware-validation" :depends-on ("validatior-item")))))
   :description ""
   :long-description
   #.(with-open-file (stream (merge-pathnames
