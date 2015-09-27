@@ -21,22 +21,24 @@ Author: Satoshi Iwasaki (yanqirenshi@gmail.com)
                :world2world)
   :components ((:module "src"
                 :components
-                        ((:file "package")
-                         (:file "message-data" :depends-on ("package"))
-                         (:file "message" :depends-on ("message-data"))
-                         (:file "condition" :depends-on ("message"))
-                         (:module "validatior-item"
-                          :components ((:file "boolean")
-                                       (:file "double")
-                                       (:file "email")
-                                       (:file "float")
-                                       (:file "integer")
-                                       (:file "postal-code")
-                                       (:file "string")
-                                       (:file "telephone-number")
-                                       (:file "url"))
-                          :depends-on ("condition"))
-                         (:file "lack-middleware-validation" :depends-on ("validatior-item")))))
+                ((:file "package")
+                 (:file "util" :depends-on ("package"))
+                 (:file "condition" :depends-on ("util"))
+                 (:module "validatior"
+                  :components ((:file "boolean")
+                               (:file "double")
+                               (:file "email")
+                               (:file "float")
+                               (:file "integer")
+                               (:file "postal-code")
+                               (:file "string")
+                               (:file "telephone-number")
+                               (:file "url"))
+                  :depends-on ("condition"))
+                 (:module "data"
+                  :components ((:file "messages"))
+                  :depends-on ("validatior"))
+                 (:file "lack-middleware-validation" :depends-on ("data")))))
   :description ""
   :long-description
   #.(with-open-file (stream (merge-pathnames

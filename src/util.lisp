@@ -1,10 +1,5 @@
 (in-package :lack.middleware.validation)
 
-(w2w:add-messages *message-data*)
-
-;;;
-;;; TODO: このしたのものは何だ？ utility じゃないか？
-;;;
 (defun emptyp (value)
   (or (null value)
       (and (stringp value)
@@ -17,3 +12,9 @@
           (validation-error (format* nil :required-field name) name value)
           default-value)
       value))
+
+(defun reply-json (status object)
+  (let ((json (to-json object)))
+    `(,status (:content-type "application/json") ,json)))
+
+
