@@ -1,18 +1,10 @@
 (in-package :lack.middleware.validation)
 
-(defun refresh-message (message-data)
-  (dolist (data message-data)
-    (let ((code (getf data :code)))
-      (when code
-        (dolist (value (getf data :value))
-          (print (getf value :language))
-          (w2w:add-expression code
-                              (getf value :language)
-                              (getf value :controller)
-                              :description (getf value :description)))))))
+(w2w:add-messages *message-data*)
 
-(refresh-message *message-data*)
-
+;;;
+;;; TODO: このしたのものは何だ？ utility じゃないか？
+;;;
 (defun emptyp (value)
   (or (null value)
       (and (stringp value)
