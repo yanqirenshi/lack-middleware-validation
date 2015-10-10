@@ -57,6 +57,13 @@
               (:language :en
                :controller "is not a valid Double."
                :description "")))
+    (:code :not-a-valid-float
+     :values ((:language :hiroshima
+               :controller "残念じゃけど Float じゃないね。"
+               :description "")
+              (:language :en
+               :controller "is not a valid Float."
+               :description "")))
     (:code :required-field
      :values ((:language :hiroshima
                :controller "~A は必須項目じゃけぇね。ちゃんと入力せんといけんよ。"
