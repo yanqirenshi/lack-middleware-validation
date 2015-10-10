@@ -24,7 +24,7 @@ Author: Satoshi Iwasaki (yanqirenshi@gmail.com)
                 ((:file "package")
                  (:file "util" :depends-on ("package"))
                  (:file "condition" :depends-on ("util"))
-                 (:module "validatior"
+                 (:module "validators"
                   :components ((:file "require")
                                (:file "empty" :depends-on ("require"))
                                (:file "boolean" :depends-on ("empty"))
@@ -39,7 +39,7 @@ Author: Satoshi Iwasaki (yanqirenshi@gmail.com)
                   :depends-on ("condition"))
                  (:module "data"
                   :components ((:file "messages"))
-                  :depends-on ("validatior"))
+                  :depends-on ("validators"))
                  (:file "lack-middleware-validation" :depends-on ("data")))))
   :description ""
   :long-description
