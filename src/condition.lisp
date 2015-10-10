@@ -24,6 +24,10 @@
          :value value
          :message message))
 
+(defun validation-error* (message-code name value)
+  (assert (keywordp message-code))
+  (validation-error (format* nil message-code) name value))
+
 (defun http-status-reason (code)
   code)
 

@@ -43,6 +43,13 @@
               (:language :en
                :controller "Is not a valid postal code."
                :description "")))
+    (:code :not-a-valid-boolean
+     :values ((:language :hiroshima
+               :controller "残念じゃけどBooleanじゃないね。"
+               :description "")
+              (:language :en
+               :controller "is not a valid Boolean."
+               :description "")))
     (:code :required-field
      :values ((:language :hiroshima
                :controller "~A は必須項目じゃけぇね。ちゃんと入力せんといけんよ。"

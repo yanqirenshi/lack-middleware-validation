@@ -1,6 +1,6 @@
 (in-package :lack.middleware.validation)
 
-(defun validation-postal-code (name value &key (require nil) (default-value ""))
+(defun validator-postal-code (name value &key (require nil) (default-value ""))
   (declare (ignore require default-value))
   (multiple-value-bind (ret)
       (clavier:validate

@@ -6,12 +6,8 @@
            (string= (string-trim '(#\Space #\Tab #\Newline) value)
                     ""))))
 
-(defun validation-empty (name value &key (require nil) (default-value ""))
-  (if (emptyp value)
-      (if require
-          (validation-error (format* nil :required-field name) name value)
-          default-value)
-      value))
+(defun booleanp (v)
+  (or (eq t v) (eq nil v))) ;; TODO: () => t. まぁどうしようも無いが。
 
 (defun reply-json (status object)
   (let ((json (to-json object)))
