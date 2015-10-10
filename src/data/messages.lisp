@@ -45,10 +45,17 @@
                :description "")))
     (:code :not-a-valid-boolean
      :values ((:language :hiroshima
-               :controller "残念じゃけどBooleanじゃないね。"
+               :controller "残念じゃけど Boolean じゃないね。"
                :description "")
               (:language :en
                :controller "is not a valid Boolean."
+               :description "")))
+    (:code :not-a-valid-double
+     :values ((:language :hiroshima
+               :controller "残念じゃけど Double じゃないね。"
+               :description "")
+              (:language :en
+               :controller "is not a valid Double."
                :description "")))
     (:code :required-field
      :values ((:language :hiroshima
