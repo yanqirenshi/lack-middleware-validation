@@ -7,6 +7,20 @@
                 #:error*
                 #:format*)
   (:export #:*lack-middleware-validation*
+           #:*message-data*
+           #:validator
+           #:validator-boolean
+           #:validator-email
+           #:validator-empty
+           #:validator-number
+           #:validator-integer
+           #:validator-float
+           #:validator-double
+           #:validator-postal-code
+           #:validator-require
+           #:validator-string
+           #:validator-telephone-number
+           #:validator-url
            #:validation
            #:validation-error
            #:validation-error-name
