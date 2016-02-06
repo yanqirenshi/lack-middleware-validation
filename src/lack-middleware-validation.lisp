@@ -10,25 +10,27 @@
 ;;;;; Validation
 ;;;;;
 (defvar *validator-plist*
-  '(:integer validation-integer
-    :float validation-float
-    :double validation-double
-    :string validation-string
-    :boolean validation-boolean
-    :email validation-email
-    :url validation-url
-    :postal-code validation-postal-code
-    :telephone-number validation-telephone-number))
+  '(:integer validator-integer
+    :float validator-float
+    :double validator-double
+    :string validator-string
+    :boolean validator-boolean
+    :email validator-email
+    :url validator-url
+    :postal-code validator-postal-code
+    :telephone-number validator-telephone-number))
 
-(defun get-validator (type)
-  (let ((validator (getf *validator-plist* type)))
-    (unless validator (error* :not-supported-type type))
+(defun validator (code)
+  (let ((validator (getf *validator-plist* code)))
+    (unless validator (error* :not-supported-type code))
     validator))
 
+(defun (setf validator) (validator code)
+  (setf (getf *validator-plist* code) validator))
 
 (defmacro validation (value type &key (require nil) (default-value nil))
   (let ((value-name (gensym))
-        (validator (get-validator type)))
+        (validator (validator type)))
     (print validator)
     `(let ((,value-name (string-downcase (symbol-name ',value))))
        (funcall #',validator
