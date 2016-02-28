@@ -22,6 +22,13 @@
               (:language :en
                :controller "is not a valid String."
                :description "")))
+    (:code :not-a-valid-date
+     :values ((:language :hiroshima
+               :controller "残念じゃけど日付フォーマットとして許せんけぇ。。"
+               :description "")
+              (:language :en
+               :controller "is not a valid date."
+               :description "")))
     (:code :not-a-valid-integer
      :values ((:language :hiroshima
                :controller "残念じゃけど整数(Integer)じゃないね。"

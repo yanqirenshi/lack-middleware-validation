@@ -18,7 +18,8 @@
     :email validator-email
     :url validator-url
     :postal-code validator-postal-code
-    :telephone-number validator-telephone-number))
+    :telephone-number validator-telephone-number
+    :date validator-date))
 
 (defun validator (code)
   (let ((validator (getf *validator-plist* code)))
