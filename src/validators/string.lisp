@@ -2,7 +2,9 @@
 
 (defun validator-string (name value &key (require nil) (default-value ""))
   (let ((value (validator-empty name value :require require :default-value default-value)))
-    (if (stringp value)
+    (if (emptyp value)
         value
-        (validation-error (format* nil :not-a-valid-string) name value))))
+        (if (stringp value)
+            value
+            (validation-error (format* nil :not-a-valid-string) name value)))))
 
