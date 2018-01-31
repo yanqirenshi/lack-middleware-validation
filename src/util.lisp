@@ -9,6 +9,8 @@
 (defun booleanp (v)
   (or (eq t v) (eq nil v))) ;; TODO: () => t. まぁどうしようも無いが。
 
-(defun reply-json (status object)
+(defun reply-json (status header object)
   (let ((json (to-json object)))
-    `(,status (:content-type "application/json") ,json)))
+    `(,status ,(or header
+                   '(:content-type "application/json"))
+              (,json))))

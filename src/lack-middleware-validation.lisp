@@ -52,10 +52,12 @@
 ;;;;;
 ;;;;; Middleware
 ;;;;;
-(defvar *lack-middleware-validation*
-  (lambda (app)
+(defparameter *lack-middleware-validation*
+  (lambda (app &key header)
     (lambda (env)
       (handler-case
           (funcall app env)
-        (validation-error (e) (response-validation-error env e))
-        (error            (e) (response-other-error      env e))))))
+        (validation-error (error)
+          (response-validation-error env error header))
+        (error (error)
+          (response-other-error env error header))))))

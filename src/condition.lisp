@@ -31,16 +31,18 @@
 (defun http-status-reason (code)
   code)
 
-(defun response-validation-error (env error &key (code 400))
+(defun response-validation-error (env error header &key (code 400))
   (declare (ignore env))
   (reply-json code
+              header
               (list :code code
                     :reason (http-status-reason code)
                     :message (format nil "~a" error))))
 
-(defun response-other-error (env error &key (code 500))
+(defun response-other-error (env error header &key (code 500))
   (declare (ignore env))
   (reply-json code
+              header
               (list :code code
                     :reason (http-status-reason code)
                     :error-type "server error"
