@@ -12,5 +12,3 @@
 (defun reply-json (status object)
   (let ((json (to-json object)))
     `(,status (:content-type "application/json") ,json)))
-
-

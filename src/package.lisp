@@ -22,6 +22,7 @@
            #:validator-telephone-number
            #:validator-url
            #:validation
+           #:valid?
            #:validation-error
            #:validation-error-name
            #:validation-error-value

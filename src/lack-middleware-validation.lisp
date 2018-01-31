@@ -32,7 +32,16 @@
 (defmacro validation (value type &key (require nil) (default-value nil))
   (let ((value-name (gensym))
         (validator (validator type)))
-    (print validator)
+    `(let ((,value-name (string-downcase (symbol-name ',value))))
+       (funcall #',validator
+                ,value-name
+                ,value
+                :require ,require
+                :default-value ,default-value))))
+
+(defmacro valid? (value type &key (require nil) (default-value nil))
+  (let ((value-name (gensym))
+        (validator (validator type)))
     `(let ((,value-name (string-downcase (symbol-name ',value))))
        (funcall #',validator
                 ,value-name
