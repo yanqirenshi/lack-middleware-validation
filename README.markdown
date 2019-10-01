@@ -28,7 +28,7 @@ valid? value data-type &key require default-value
 ### Data Type
 
 | data-type         | validator                  |
-|-------------------+----------------------------|
+|-------------------|----------------------------|
 | :integer          | validator-integer          |
 | :float            | validator-float            |
 | :double           | validator-double           |
@@ -43,7 +43,7 @@ valid? value data-type &key require default-value
 ### Require
 
 | values | description              |
-|--------+--------------------------|
+|--------|--------------------------|
 | t      | valie is nil ⇒ error     |
 | nil    | valie is nil ⇒ not error |
 
