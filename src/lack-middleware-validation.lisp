@@ -29,13 +29,17 @@
 (defun (setf validator) (validator code)
   (setf (getf *validator-plist* code) validator))
 
+(defun decode-value (url-decode value)
+  (if url-decode
+      (quri:url-decode value)
+      value))
+
 (defmacro validate (value type &key (require nil) (default-value nil) (url-decode nil))
   (let ((value-name (gensym))
         (value-tmp  (gensym))
         (validator  (validator type)))
-    `(let* ((,value-tmp (if ,url-decode
-                            (quri:url-decode ,value)
-                            ,value))
+    (format t "x=~S~%" url-decode)
+    `(let* ((,value-tmp (decode-value ,url-decode ,value))
             (,value-name ,value-tmp))
        (funcall #',validator
                 ,value-name
@@ -48,9 +52,7 @@
   (let ((value-name (gensym))
         (value-tmp  (gensym))
         (validator  (validator type)))
-    `(let* ((,value-tmp (if ,url-decode
-                            (quri:url-decode ,value)
-                            ,value))
+    `(let* ((,value-tmp (decode-value ,url-decode ,value))
             (,value-name ,value-tmp))
        (funcall #',validator
                 ,value-name
@@ -63,9 +65,7 @@
   (let ((value-name (gensym))
         (value-tmp  (gensym))
         (validator  (validator type)))
-    `(let* ((,value-tmp (if ,url-decode
-                            (quri:url-decode ,value)
-                            ,value))
+    `(let* ((,value-tmp (decode-value ,url-decode ,value))
             (,value-name ,value-tmp))
        (funcall #',validator
                 ,value-name
