@@ -21,6 +21,7 @@
            #:validator-string
            #:validator-telephone-number
            #:validator-url
+           #:validate
            #:validation
            #:valid?
            #:validation-error

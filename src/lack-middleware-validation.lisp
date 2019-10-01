@@ -10,16 +10,16 @@
 ;;;;; Validation
 ;;;;;
 (defvar *validator-plist*
-  '(:integer validator-integer
-    :float validator-float
-    :double validator-double
-    :string validator-string
-    :boolean validator-boolean
-    :email validator-email
-    :url validator-url
-    :postal-code validator-postal-code
+  '(:integer          validator-integer
+    :float            validator-float
+    :double           validator-double
+    :string           validator-string
+    :boolean          validator-boolean
+    :email            validator-email
+    :url              validator-url
+    :postal-code      validator-postal-code
     :telephone-number validator-telephone-number
-    :date validator-date))
+    :date             validator-date))
 
 (defun validator (code)
   (let ((validator (getf *validator-plist* code)))
@@ -29,23 +29,47 @@
 (defun (setf validator) (validator code)
   (setf (getf *validator-plist* code) validator))
 
-(defmacro validation (value type &key (require nil) (default-value nil))
+(defmacro validate (value type &key (require nil) (default-value nil) (url-decode nil))
   (let ((value-name (gensym))
-        (validator (validator type)))
-    `(let ((,value-name (string-downcase (symbol-name ',value))))
+        (value-tmp  (gensym))
+        (validator  (validator type)))
+    `(let* ((,value-tmp (if ,url-decode
+                            (quri:url-decode ,value)
+                            ,value))
+            (,value-name ,value-tmp))
        (funcall #',validator
                 ,value-name
-                ,value
+                ,value-tmp
                 :require ,require
                 :default-value ,default-value))))
 
-(defmacro valid? (value type &key (require nil) (default-value nil))
+(defmacro validation (value type &key (require nil) (default-value nil) (url-decode nil))
+  (warn "~S は廃棄予定です。 ~S を利用してください。" 'validation 'validate)
   (let ((value-name (gensym))
-        (validator (validator type)))
-    `(let ((,value-name (string-downcase (symbol-name ',value))))
+        (value-tmp  (gensym))
+        (validator  (validator type)))
+    `(let* ((,value-tmp (if ,url-decode
+                            (quri:url-decode ,value)
+                            ,value))
+            (,value-name ,value-tmp))
        (funcall #',validator
                 ,value-name
-                ,value
+                ,value-tmp
+                :require ,require
+                :default-value ,default-value))))
+
+(defmacro valid? (value type &key (require nil) (default-value nil) (url-decode nil))
+  (warn "~S は廃棄予定です。 ~S を利用してください。" 'validation 'validate)
+  (let ((value-name (gensym))
+        (value-tmp  (gensym))
+        (validator  (validator type)))
+    `(let* ((,value-tmp (if ,url-decode
+                            (quri:url-decode ,value)
+                            ,value))
+            (,value-name ,value-tmp))
+       (funcall #',validator
+                ,value-name
+                ,value-tmp
                 :require ,require
                 :default-value ,default-value))))
 
