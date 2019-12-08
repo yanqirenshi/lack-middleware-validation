@@ -30,10 +30,12 @@
       (validation-error* (error-code-at type) name value))))
 
 (defun validator-integer (name value &key (require nil) (default-value 0))
-  (validator-number name value
-                    :require require
-                    :default-value default-value
-                    :type 'integer))
+  (if (and (not require) (null value))
+      nil
+      (validator-number name value
+                        :require require
+                        :default-value default-value
+                        :type 'integer)))
 
 (defun validator-float (name value &key (require nil) (default-value 0.0))
   (validator-number name value
