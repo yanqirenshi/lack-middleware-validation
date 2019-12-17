@@ -38,7 +38,6 @@
   (let ((value-name (gensym))
         (value-tmp  (gensym))
         (validator  (validator type)))
-    (format t "x=~S~%" url-decode)
     `(let* ((,value-tmp (decode-value ,url-decode ,value))
             (,value-name ,value-tmp))
        (funcall #',validator
